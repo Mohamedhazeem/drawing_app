@@ -14,7 +14,7 @@ export const enum ToolNames{
     COLOR,
     SIZE
 }
-const initialState:Tools = {isDraw:true,isErase:false, size: 5, isShowSize:false}
+const initialState:Tools = {isDraw:true,isErase:false, size: 5, isShowSize:false, lastSelectedtoolName: ToolNames.PEN}
 
 const toolsSlice = createSlice({
     name: 'tools',
