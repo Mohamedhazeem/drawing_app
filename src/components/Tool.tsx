@@ -1,25 +1,24 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { IconContext } from "react-icons";
-import { ToolNames } from "../state/canvas/toolsSlice";
-import { useSelector } from "react-redux";
-import { RootState } from "../state/store";
 
 export interface Tools {
   icon?: ReactNode;
-  toolName?: ToolNames;
+  isSelected?: boolean;
   onclick?: () => void;
 }
 
-const Tool = ({ icon, onclick, toolName }: Tools) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+const Tool = ({ icon, onclick, isSelected }: Tools) => {
   return (
     <IconContext.Provider
       value={{
         color: `${isSelected ? "white" : "black"}`,
-        className: `${isSelected ? "black" : "white"}`,
+        className: "",
       }}
     >
-      <div className="tool" onClick={onclick}>
+      <div
+        className={`${isSelected ? "tool-enabled" : "tool-disabled"} tool`}
+        onClick={onclick}
+      >
         {icon}
       </div>
     </IconContext.Provider>
