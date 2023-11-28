@@ -26,3 +26,18 @@
 .clear {
   @apply bg-red-500;
 }
+.toolbox-holder{
+  @apply absolute top-1/2 -translate-y-1/2 left-10 flex flex-col justify-between items-center;
+}
+.toolbox{
+  @apply flex flex-col gap-7 items-center;
+}
+.tool{
+  @apply rounded-full bg-slate-200 px-4 py-4 shadow-slate-700 drop-shadow-xl;
+}
+.color-select{
+  @apply absolute opacity-0 bottom-72 left-20;
+}
+.size-select{
+  @apply absolute bottom-5 left-20
+}
