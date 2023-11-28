@@ -1,12 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Tool from "../components/Tool";
 import { IoColorPaletteSharp } from "react-icons/io5";
 import { ToolNames, setLastSelectToolName } from "../state/canvas/toolsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 function Color() {
   const color = useRef<HTMLInputElement | null>(null);
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const selectedTool = useSelector(
+    (state: RootState) => state.tools.lastSelectedtoolName
+  );
+  useEffect(() => {
+    if (ToolNames.COLOR == selectedTool) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  }, [selectedTool]);
+
   const OnClick = (toolName: ToolNames) => {
-    setLastSelectToolName(toolName);
+    dispatch(setLastSelectToolName(toolName));
     if (color.current) {
       color.current.click();
     }
@@ -15,7 +31,7 @@ function Color() {
   return (
     <div>
       <Tool
-        toolName={ToolNames.COLOR}
+        isSelected={isSelected}
         onclick={() => OnClick(ToolNames.COLOR)}
         icon={<IoColorPaletteSharp size={25} />}
       />
