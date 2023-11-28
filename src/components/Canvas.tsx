@@ -2,7 +2,11 @@ import { useEffect, useRef, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { canPaint, setCanvasContext } from "../state/canvas/canvasSlice";
-import { showSize } from "../state/canvas/toolsSlice";
+import {
+  ToolNames,
+  setLastSelectToolName,
+  showSize,
+} from "../state/canvas/toolsSlice";
 
 function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,6 +23,10 @@ function Canvas() {
   const canvasConext = useSelector(
     (state: RootState) => state.canvas.canvasContext
   );
+  const selectedTool = useSelector(
+    (state: RootState) => state.tools.lastSelectedtoolName
+  );
+
   useEffect(() => {
     const Canvas = canvasRef.current;
     Canvas!.width = screen.width;
@@ -38,6 +46,14 @@ function Canvas() {
   const startDraw = (event: MouseEvent<HTMLCanvasElement>) => {
     const { offsetX, offsetY } = event.nativeEvent;
 
+    if (selectedTool == ToolNames.COLOR || ToolNames.SIZE) {
+      if (isDraw) {
+        dispatch(setLastSelectToolName(ToolNames.PEN));
+      } else if (isErase) {
+        dispatch(setLastSelectToolName(ToolNames.ERASE));
+      }
+    }
+
     if (isDraw) {
       canvasContextRef.current!.strokeStyle =
         canvasConext!.strokeStyle || "black";
@@ -49,6 +65,7 @@ function Canvas() {
 
     canvasContextRef.current?.beginPath();
     canvasContextRef.current?.moveTo(offsetX, offsetY);
+
     dispatch(showSize(false));
     dispatch(canPaint(true));
   };
