@@ -5,10 +5,10 @@ import {
   ToolNames,
   setLastSelectToolName,
   showSize,
-  size,
 } from "../state/canvas/toolsSlice";
 import { useEffect, useRef, useState } from "react";
 import { RootState } from "../state/store";
+import { setSize } from "../state/canvas/canvasSlice";
 
 function Size() {
   const dispatch = useDispatch();
@@ -35,10 +35,6 @@ function Size() {
       dispatch(setLastSelectToolName(toolName));
     }
   }
-
-  // function onSizeClick() {
-  //   dispatch(size(5));
-  // }
   return (
     <div>
       <Tool
@@ -49,6 +45,7 @@ function Size() {
       <input
         type="range"
         ref={sizeInput}
+        onChange={(e) => dispatch(setSize(Number(e.target.value)))}
         className={`size-select ${isShowSize ? "block" : "hidden"}`}
       />
     </div>

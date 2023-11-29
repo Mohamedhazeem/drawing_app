@@ -1,7 +1,7 @@
 import { useEffect, useRef, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import { canPaint, setCanvasContext } from "../state/canvas/canvasSlice";
+import { canPaint, setCanvasStrokeStyle } from "../state/canvas/canvasSlice";
 import {
   ToolNames,
   setLastSelectToolName,
@@ -18,10 +18,10 @@ function Canvas() {
   const isPaint = useSelector((state: RootState) => state.canvas.isPainting);
   const isDraw = useSelector((state: RootState) => state.tools.isDraw);
   const isErase = useSelector((state: RootState) => state.tools.isErase);
-  const size = useSelector((state: RootState) => state.tools.size);
+  const size = useSelector((state: RootState) => state.canvas.size);
 
-  const canvasConext = useSelector(
-    (state: RootState) => state.canvas.canvasContext
+  const strokeStyle = useSelector(
+    (state: RootState) => state.canvas.strokeStyle
   );
   const selectedTool = useSelector(
     (state: RootState) => state.tools.lastSelectedtoolName
@@ -38,8 +38,8 @@ function Canvas() {
     const canvasContext = Canvas!.getContext("2d");
     canvasContext!.lineCap = "round";
     canvasContext!.strokeStyle = "black";
-    canvasContext!.lineWidth = size || 5;
-    dispatch(setCanvasContext({ strokeStyle: "black" }));
+    canvasContext!.lineWidth = size!;
+    dispatch(setCanvasStrokeStyle("black"));
     canvasContextRef.current = canvasContext;
   }, []);
 
@@ -55,8 +55,7 @@ function Canvas() {
     }
 
     if (isDraw) {
-      canvasContextRef.current!.strokeStyle =
-        canvasConext!.strokeStyle || "black";
+      canvasContextRef.current!.strokeStyle = strokeStyle || "black";
       canvasContextRef.current!.lineWidth = size || 5;
     } else if (isErase) {
       canvasContextRef.current!.strokeStyle = BG;

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Tool from "../components/Tool";
 import { IoColorPaletteSharp } from "react-icons/io5";
 import { ToolNames, setLastSelectToolName } from "../state/canvas/toolsSlice";
+import { setCanvasStrokeStyle } from "../state/canvas/canvasSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 
@@ -35,7 +36,12 @@ function Color() {
         onclick={() => OnClick(ToolNames.COLOR)}
         icon={<IoColorPaletteSharp size={25} />}
       />
-      <input type="color" ref={color} className="color-select" />
+      <input
+        type="color"
+        onChange={(e) => dispatch(setCanvasStrokeStyle(e.target.value))}
+        ref={color}
+        className="color-select"
+      />
     </div>
   );
 }
