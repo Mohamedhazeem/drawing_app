@@ -3,7 +3,6 @@ import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 interface Tools{
     isDraw: boolean;
     isErase?: boolean;
-    size?: number;
     isShowSize?: boolean;
     lastSelectedtoolName?: ToolNames;
 }
@@ -14,7 +13,7 @@ export const enum ToolNames{
     COLOR,
     SIZE
 }
-const initialState:Tools = {isDraw:true,isErase:false, size: 5, isShowSize:false, lastSelectedtoolName: ToolNames.PEN}
+const initialState:Tools = {isDraw:true,isErase:false, isShowSize:false, lastSelectedtoolName: ToolNames.PEN}
 
 const toolsSlice = createSlice({
     name: 'tools',
@@ -28,9 +27,7 @@ const toolsSlice = createSlice({
             state.isDraw = !action.payload;
             state.isErase = action.payload;
         },
-        size: (state, action: PayloadAction<number>)=>{
-            state.size = action.payload;
-        },
+
         showSize: (state, action: PayloadAction<boolean>) =>{
             state.isShowSize = action.payload;
         },
@@ -39,5 +36,5 @@ const toolsSlice = createSlice({
         }
     }
 })
-export const {draw,erase,size,showSize,setLastSelectToolName} = toolsSlice.actions;
+export const {draw,erase,showSize,setLastSelectToolName} = toolsSlice.actions;
 export default toolsSlice.reducer;
