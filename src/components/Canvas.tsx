@@ -9,6 +9,7 @@ import {
 } from "../state/canvas/toolsSlice";
 import React from "react";
 import Navbar from "./Navbar";
+import { ClearCanvasProvider } from "../hooks/ClearCanvasProvider";
 
 export const ClearCanvasContext = React.createContext(() => {
   undefined;
@@ -91,9 +92,9 @@ function Canvas() {
   };
   return (
     <>
-      <ClearCanvasContext.Provider value={clearCanvas}>
+      <ClearCanvasProvider clearCanvas={clearCanvas}>
         <Navbar />
-      </ClearCanvasContext.Provider>
+      </ClearCanvasProvider>
       <canvas
         ref={canvasRef}
         onMouseDown={startDraw}
