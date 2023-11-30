@@ -7,6 +7,12 @@ import {
   setLastSelectToolName,
   showSize,
 } from "../state/canvas/toolsSlice";
+import React from "react";
+import Navbar from "./Navbar";
+
+export const ClearCanvasContext = React.createContext(() => {
+  undefined;
+});
 
 function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -80,8 +86,14 @@ function Canvas() {
     canvasContextRef.current?.lineTo(offsetX, offsetY);
     canvasContextRef.current?.stroke();
   };
+  const clearCanvas = () => {
+    canvasContextRef.current?.clearRect(0, 0, screen.width, screen.height);
+  };
   return (
     <>
+      <ClearCanvasContext.Provider value={clearCanvas}>
+        <Navbar />
+      </ClearCanvasContext.Provider>
       <canvas
         ref={canvasRef}
         onMouseDown={startDraw}

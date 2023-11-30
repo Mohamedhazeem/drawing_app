@@ -6,7 +6,7 @@
   @apply flex flex-row;
 }
 .navbar-container {
-  @apply navbar-row items-center justify-between px-6 py-3 bg-slate-300;
+  @apply fixed w-full navbar-row items-center justify-between px-6 py-3 bg-slate-300;
 }
 .navbar-icon-text-container {
   @apply navbar-row items-center gap-4;
@@ -27,7 +27,7 @@
   @apply bg-red-500;
 }
 .toolbox-holder{
-  @apply absolute top-1/2 -translate-y-1/2 left-10 flex flex-col justify-between items-center;
+  @apply fixed top-1/2 -translate-y-1/2 left-10 flex flex-col justify-between items-center;
 }
 .toolbox{
   @apply flex flex-col gap-7 items-center;

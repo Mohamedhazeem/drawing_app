@@ -5,7 +5,7 @@ import Toolbox from "./components/Toolbox";
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Canvas />
       <div className="toolbox-holder">
         <Toolbox />

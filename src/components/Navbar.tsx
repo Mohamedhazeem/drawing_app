@@ -1,8 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { IconContext } from "react-icons";
 import { FaFileSignature } from "react-icons/fa";
+import { ClearCanvasContext } from "./Canvas";
 
 function Navbar() {
+  const clear = useContext(ClearCanvasContext);
   return (
     <div className="navbar-container">
       <div className="navbar-icon-text-container">
@@ -22,7 +24,7 @@ function Navbar() {
         <button type="button" className="navbar-button save">
           SAVE
         </button>
-        <button type="button" className="navbar-button clear">
+        <button type="button" className="navbar-button clear" onClick={clear}>
           CLEAR
         </button>
       </div>
