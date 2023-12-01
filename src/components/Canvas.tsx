@@ -62,11 +62,12 @@ function Canvas() {
     }
 
     if (isDraw) {
-      canvasContextRef.current!.strokeStyle = strokeStyle || "black";
-      canvasContextRef.current!.lineWidth = size || 5;
+      canvasContextRef.current!.globalAlpha = 0.5;
+      canvasContextRef.current!.strokeStyle = strokeStyle!;
+      canvasContextRef.current!.lineWidth = size!;
     } else if (isErase) {
       canvasContextRef.current!.strokeStyle = BG;
-      canvasContextRef.current!.lineWidth = size || 5;
+      canvasContextRef.current!.lineWidth = size!;
     }
 
     canvasContextRef.current?.beginPath();
