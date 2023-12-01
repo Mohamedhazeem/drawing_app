@@ -40,7 +40,10 @@
   @apply absolute opacity-0 bottom-72 left-20;
 }
 .size-select{
-  @apply absolute bottom-5 left-20
+  @apply absolute bottom-5 left-20;
+}
+.size-select-output{
+  @apply absolute bottom-3 left-56 font-bold text-center text-lg p-1 px-2 rounded-xl bg-blue-600;
 }
 .tool-enabled{
   @apply bg-slate-800;
