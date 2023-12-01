@@ -1,4 +1,4 @@
-import React, { useContext, createContext, ReactNode } from "react";
+import { createContext, ReactNode } from "react";
 
 export const ClearCanvasContext = createContext(() => {
   undefined;

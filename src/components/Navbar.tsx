@@ -1,7 +1,5 @@
-import { useContext } from "react";
 import { IconContext } from "react-icons";
 import { FaFileSignature } from "react-icons/fa";
-import { ClearCanvasContext } from "./Canvas";
 import { useClearCanvas } from "../hooks/useClearCanvas";
 
 function Navbar() {
