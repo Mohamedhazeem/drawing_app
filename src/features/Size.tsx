@@ -11,11 +11,11 @@ import { RootState } from "../state/store";
 import { setSize } from "../state/canvas/canvasSlice";
 
 function Size() {
-  const dispatch = useDispatch();
   const sizeInput = useRef<HTMLInputElement | null>(null);
   const sizeInputValue = useRef<HTMLParagraphElement | null>(null);
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
   const isShowSize = useSelector((state: RootState) => state.tools.isShowSize);
   const size = useSelector((state: RootState) => state.canvas.size);
   const selectedTool = useSelector(
