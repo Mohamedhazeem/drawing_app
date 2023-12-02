@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  @apply bg-[#EDF0EF]
+}
 .navbar-row {
   @apply flex flex-row;
 }
@@ -26,6 +29,9 @@
 .clear {
   @apply bg-red-500;
 }
+.canvas-container {
+  @apply w-full h-screen pt-[72px] flex items-center justify-center
+}
 .toolbox-holder{
   @apply fixed top-1/2 -translate-y-1/2 left-10 flex flex-col justify-between items-center;
 }
@@ -33,7 +39,6 @@
   @apply flex flex-col gap-7 items-center;
 }
 .tool{
-  /* @apply rounded-full bg-slate-200 px-4 py-4 shadow-slate-700 drop-shadow-xl; */
   @apply rounded-full px-4 py-4 shadow-slate-700 drop-shadow-xl;
 }
 .color-select{

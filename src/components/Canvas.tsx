@@ -1,19 +1,14 @@
 import { useEffect, useRef, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import { canPaint, setCanvasStrokeStyle } from "../state/canvas/canvasSlice";
+import { canPaint } from "../state/canvas/canvasSlice";
 import {
   ToolNames,
   setLastSelectToolName,
   showSize,
 } from "../state/canvas/toolsSlice";
-import React from "react";
 import Navbar from "./Navbar";
 import { ClearCanvasProvider } from "../hooks/ClearCanvasProvider";
-
-export const ClearCanvasContext = React.createContext(() => {
-  undefined;
-});
 
 function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,18 +31,20 @@ function Canvas() {
 
   useEffect(() => {
     const Canvas = canvasRef.current;
-    Canvas!.width = screen.width;
-    Canvas!.height = screen.height;
-    Canvas!.style.width = `${window.innerWidth}`;
-    Canvas!.style.height = `${window.innerHeight}`;
+    Canvas!.width = 1080 || screen.width;
+    Canvas!.height = 600 || screen.height;
     Canvas!.style.backgroundColor = BG;
 
     const canvasContext = Canvas!.getContext("2d");
     canvasContext!.lineCap = "round";
-    canvasContext!.strokeStyle = "black";
+    canvasContext!.strokeStyle = strokeStyle!;
     canvasContext!.lineWidth = size!;
-    dispatch(setCanvasStrokeStyle("black"));
     canvasContextRef.current = canvasContext;
+    window.addEventListener("mouseup", () => dispatch(canPaint(false)));
+
+    return () => {
+      window.removeEventListener("mouseup", () => dispatch(canPaint(false)));
+    };
   }, []);
 
   const startDraw = (event: MouseEvent<HTMLCanvasElement>) => {
@@ -62,7 +59,6 @@ function Canvas() {
     }
 
     if (isDraw) {
-      canvasContextRef.current!.globalAlpha = 0.5;
       canvasContextRef.current!.strokeStyle = strokeStyle!;
       canvasContextRef.current!.lineWidth = size!;
     } else if (isErase) {
@@ -84,7 +80,6 @@ function Canvas() {
   const draw = (event: MouseEvent<HTMLCanvasElement>) => {
     if (!isPaint) return;
     const { offsetX, offsetY } = event.nativeEvent;
-
     canvasContextRef.current?.lineTo(offsetX, offsetY);
     canvasContextRef.current?.stroke();
   };
@@ -96,12 +91,14 @@ function Canvas() {
       <ClearCanvasProvider clearCanvas={clearCanvas}>
         <Navbar />
       </ClearCanvasProvider>
-      <canvas
-        ref={canvasRef}
-        onMouseDown={startDraw}
-        onMouseUp={endDraw}
-        onMouseMove={draw}
-      ></canvas>
+      <div className="canvas-container">
+        <canvas
+          ref={canvasRef}
+          onMouseDown={startDraw}
+          onMouseUp={endDraw}
+          onMouseMove={draw}
+        ></canvas>
+      </div>
     </>
   );
 }
