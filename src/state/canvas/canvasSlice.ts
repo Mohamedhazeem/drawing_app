@@ -7,9 +7,10 @@ interface Canvas {
   size?: number;
   width?: number;
   height?: number;
+  fileName?: string;
 }
 
-const initialState: Canvas = { isPainting: false,size: 5,width: window.innerWidth, height: window.innerWidth,strokeStyle:"black" };
+const initialState: Canvas = { isPainting: false,size: 5,width: window.innerWidth, height: window.innerWidth,strokeStyle:"black",fileName: "Untitiled_1" };
 
 const canvasSlice = createSlice({
   name: "canvas",
@@ -27,10 +28,13 @@ const canvasSlice = createSlice({
     setCanvasContext: (state, action: PayloadAction<Canvas>) => {
         state.width = action.payload.width;
         state.height = action.payload.height;
+    },
+    setFileName: (state, action: PayloadAction<string>) => {
+      state.fileName = action.payload;
     }
   },
 });
-export const { canPaint, setCanvasStrokeStyle,setSize } = canvasSlice.actions;
+export const { canPaint, setCanvasStrokeStyle,setSize,setFileName } = canvasSlice.actions;
 
 export default canvasSlice.reducer;
 
