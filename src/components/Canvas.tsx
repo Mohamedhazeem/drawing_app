@@ -9,6 +9,7 @@ import {
 } from "../state/canvas/toolsSlice";
 import Navbar from "./Navbar";
 import { ClearCanvasProvider } from "../hooks/ClearCanvasProvider";
+import SaveCanvasProvider from "../hooks/SaveCanvasProvider";
 
 function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,6 +22,7 @@ function Canvas() {
   const isDraw = useSelector((state: RootState) => state.tools.isDraw);
   const isErase = useSelector((state: RootState) => state.tools.isErase);
   const size = useSelector((state: RootState) => state.canvas.size);
+  const fileName = useSelector((state: RootState) => state.canvas.fileName);
 
   const strokeStyle = useSelector(
     (state: RootState) => state.canvas.strokeStyle
@@ -83,13 +85,23 @@ function Canvas() {
     canvasContextRef.current?.lineTo(offsetX, offsetY);
     canvasContextRef.current?.stroke();
   };
+  const save = () => {
+    const url = canvasRef.current!.toDataURL("image/jpg", 0.8);
+    const elementA = document.createElement("a");
+    elementA.href = url;
+    elementA.download = fileName!;
+    elementA.click();
+    document.body.removeChild(elementA);
+  };
   const clearCanvas = () => {
     canvasContextRef.current?.clearRect(0, 0, screen.width, screen.height);
   };
   return (
     <>
       <ClearCanvasProvider clearCanvas={clearCanvas}>
-        <Navbar />
+        <SaveCanvasProvider saveCanvas={save}>
+          <Navbar />
+        </SaveCanvasProvider>
       </ClearCanvasProvider>
       <div className="canvas-container">
         <canvas
