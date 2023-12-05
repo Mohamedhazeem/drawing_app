@@ -38,6 +38,9 @@ function Canvas() {
     Canvas!.style.backgroundColor = BG;
 
     const canvasContext = Canvas!.getContext("2d");
+    canvasContext!.fillStyle = BG;
+    canvasContext!.fillRect(0, 0, Canvas!.width, Canvas!.height);
+
     canvasContext!.lineCap = "round";
     canvasContext!.strokeStyle = strokeStyle!;
     canvasContext!.lineWidth = size!;
