@@ -34,6 +34,7 @@ function Erase() {
         onclick={() => onEraseClick(ToolNames.ERASE)}
         isSelected={isSelected}
         icon={<BsEraserFill size={25} />}
+        gradient="eraser-gradient"
       />
     </div>
   );

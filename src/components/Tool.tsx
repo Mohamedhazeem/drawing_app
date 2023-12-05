@@ -5,9 +5,10 @@ export interface Tools {
   icon?: ReactNode;
   isSelected?: boolean;
   onclick?: () => void;
+  gradient?: string;
 }
 
-const Tool = ({ icon, onclick, isSelected }: Tools) => {
+const Tool = ({ icon, onclick, isSelected, gradient }: Tools) => {
   return (
     <IconContext.Provider
       value={{
@@ -16,7 +17,9 @@ const Tool = ({ icon, onclick, isSelected }: Tools) => {
       }}
     >
       <div
-        className={`${isSelected ? "tool-enabled" : "tool-disabled"} tool`}
+        className={`${
+          isSelected ? (gradient ? gradient : "tool-enabled") : "tool-disabled"
+        } tool`}
         onClick={onclick}
       >
         {icon}

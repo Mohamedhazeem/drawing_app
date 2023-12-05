@@ -9,7 +9,7 @@ body{
   @apply flex flex-row;
 }
 .navbar-container {
-  @apply fixed w-full navbar-row items-center justify-between px-6 py-3 bg-slate-300;
+  @apply fixed w-full navbar-row items-center justify-between px-6 py-3 bg-[#7186af]; 
 }
 .navbar-icon-text-container {
   @apply navbar-row items-center gap-4;
@@ -45,14 +45,26 @@ body{
   @apply absolute opacity-0 bottom-72 left-20;
 }
 .size-select{
-  @apply absolute bottom-5 left-20;
+  @apply absolute w-20 bottom-5 left-16;
 }
 .size-select-output{
-  @apply absolute bottom-3 left-56 font-bold text-center text-lg p-1 px-2 rounded-xl bg-blue-600;
+  @apply absolute bottom-4 left-[152px] font-bold text-center text-sm p-1 px-2 rounded-xl bg-blue-600;
 }
 .tool-enabled{
   @apply bg-slate-800;
 }
 .tool-diabled{
   @apply bg-slate-200;
+}
+.pen-gradient{
+  @apply bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500;
+}
+.eraser-gradient{
+  @apply bg-gradient-to-r from-emerald-500 to-lime-600;
+}
+.color-gradient{
+  @apply bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-fuchsia-500 via-red-600 to-orange-400;
+}
+.size-gradient{
+  @apply bg-gradient-to-tr from-sky-400 to-indigo-900;
 }

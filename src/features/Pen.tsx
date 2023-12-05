@@ -32,6 +32,7 @@ function Pen() {
         onclick={() => onClick(ToolNames.PEN)}
         isSelected={isSelected}
         icon={<FaPen size={25} />}
+        gradient="pen-gradient"
       />
     </div>
   );

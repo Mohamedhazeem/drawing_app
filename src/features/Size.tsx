@@ -47,8 +47,9 @@ function Size() {
         isSelected={isSelected}
         onclick={() => OnClick(ToolNames.SIZE)}
         icon={<FaRegCircleDot size={25} />}
+        gradient="size-gradient"
       />
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row">
         <input
           type="range"
           ref={sizeInput}

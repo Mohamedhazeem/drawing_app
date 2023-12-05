@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="navbar-icon-text-container">
-        <IconContext.Provider value={{ color: "black", className: "" }}>
+        <IconContext.Provider value={{ color: "white", className: "test" }}>
           <div>
             <FaFileSignature size={50} />
           </div>

@@ -35,6 +35,7 @@ function Color() {
         isSelected={isSelected}
         onclick={() => OnClick(ToolNames.COLOR)}
         icon={<IoColorPaletteSharp size={25} />}
+        gradient="color-gradient"
       />
       <input
         type="color"
