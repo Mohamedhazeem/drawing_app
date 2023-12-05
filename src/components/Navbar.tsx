@@ -2,7 +2,6 @@ import { IconContext } from "react-icons";
 import { FaFileSignature } from "react-icons/fa";
 import { useClearCanvas } from "../hooks/useClearCanvas";
 import { useSaveCanvas } from "../hooks/useSaveCanvas";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setFileName } from "../state/canvas/canvasSlice";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import Color from "../features/Color";
 import Pen from "../features/Pen";
 import Erase from "../features/Erase";

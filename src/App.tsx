@@ -1,6 +1,4 @@
-import Navbar from "./components/Navbar";
 import Canvas from "./components/Canvas";
-import React, { useRef } from "react";
 import Toolbox from "./components/Toolbox";
 function App() {
   return (
